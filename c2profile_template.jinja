@@ -32,13 +32,10 @@ set useragent "{{ useragent }}";
 ################################################
 ## SSL CERTIFICATE
 ################################################
-https-certificate { # Simple self signed certificate data
+https-certificate { # keystore for actual cert
     
-    set C   "{{ https_certificate_C }}";
-    set CN  "{{ https_certificate_CN }}";
-    set O   "{{ https_certificate_O }}";
-    set OU  "{{ https_certificate_OU }}";
-    set validity "{{ https_certificate_V }}";
+    set keystore  "keystore_name";
+    set password  "keystore_password";
 }
 
 ################################################
@@ -167,11 +164,190 @@ stage { # https://www.cobaltstrike.com/help-malleable-postex
         strrep "ReflectiveLoader" "{{ stage_transform_x86_strrep1 }}";
         strrep "This program cannot be run in DOS mode" ""; # Remove this text
         strrep "beacon.dll" ""; # Remove this text
+        strrep "NtQueueApcThread" "";
+		strrep "HTTP/1.1 200 OK" "";
+		strrep "Stack memory was corrupted" "";
+		strrep "ADVAPI32.dll" "";
+		strrep "WININET.dll" "";
+		strrep "WS2_32.dll" "";
+		strrep "DNSAPI.dll" "";
+		strrep "Secur32.dll" "";
+		strrep "VirtualProtectEx" "";
+		strrep "VirtualProtect" "";
+		strrep "VirtualAllocEx" "";
+		strrep "VirtualAlloc" "";
+		strrep "VirtualFree" "";
+		strrep "VirtualQuery" "";
+		strrep "RtlVirtualUnwind" "";
+		strrep "sAlloc" "";
+		strrep "FlsFree" "";
+		strrep "FlsGetValue" "";
+		strrep "FlsSetValue" "";
+		strrep "InitializeCriticalSectionEx" "";
+		strrep "CreateSemaphoreExW" "";
+		strrep "SetThreadStackGuarantee" "";
+		strrep "CreateThreadpoolTimer" "";
+		strrep "SetThreadpoolTimer" "";
+		strrep "WaitForThreadpoolTimerCallbacks" "";
+		strrep "CloseThreadpoolTimer" "";
+		strrep "CreateThreadpoolWait" "";
+		strrep "SetThreadpoolWait" "";
+		strrep "CloseThreadpoolWait" "";
+		strrep "FlushProcessWriteBuffers" "";
+		strrep "FreeLibraryWhenCallbackReturns" "";
+		strrep "GetCurrentProcessorNumber" "";
+		strrep "GetLogicalProcessorInformation" "";
+		strrep "CreateSymbolicLinkW" "";
+		strrep "SetDefaultDllDirectories" "";
+		strrep "EnumSystemLocalesEx" "";
+		strrep "CompareStringEx" "";
+		strrep "GetDateFormatEx" "";
+		strrep "GetLocaleInfoEx" "";
+		strrep "GetTimeFormatEx" "";
+		strrep "GetUserDefaultLocaleName" "";
+		strrep "IsValidLocaleName" "";
+		strrep "LCMapStringEx" "";
+		strrep "GetCurrentPackageId" "";
+		strrep "UNICODE" "";
+		strrep "UTF-8" "";
+		strrep "UTF-16LE" "";
+		strrep "MessageBoxW" "";
+		strrep "GetActiveWindow" "";
+		strrep "GetLastActivePopup" "";
+		strrep "GetUserObjectInformationW" "";
+		strrep "GetProcessWindowStation" "";
+		strrep "Sunday" "";
+		strrep "Monday" "";
+		strrep "Tuesday" "";
+		strrep "Wednesday" "";
+		strrep "Thursday" "";
+		strrep "Friday" "";
+		strrep "Saturday" "";
+		strrep "January" "";
+		strrep "February" "";
+		strrep "March" "";
+		strrep "April" "";
+		strrep "June" "";
+		strrep "July" "";
+		strrep "August" "";
+		strrep "September" "";
+		strrep "October" "";
+		strrep "November" "";
+		strrep "December" "";
+		strrep "MM/dd/yy" "";
+		strrep "Stack memory around _alloca was corrupted" "";
+		strrep "Unknown Runtime Check Error" "";
+		strrep "Unknown Filename" "";
+		strrep "Unknown Module Name" "";
+		strrep "Run-Time Check Failure #%d - %s" "";
+		strrep "Stack corrupted near unknown variable" "";
+		strrep "Stack pointer corruption" "";
+		strrep "Cast to smaller type causing loss of data" "";
+		strrep "Stack memory corruption" "";
+		strrep "Local variable used before initialization" "";
+		strrep "Stack around _alloca corrupted" "";
+		strrep "RegOpenKeyExW" "";
+		strrep "egQueryValueExW" "";
+		strrep "RegCloseKey" "";
+		strrep "LibTomMath" "";
+		strrep "Wow64DisableWow64FsRedirection" "";
+		strrep "Wow64RevertWow64FsRedirection" "";
+		strrep "Kerberos" "";
     }
     transform-x64 { #blocks pad and transform Beacon's Reflective DLL stage. These blocks support three commands: prepend, append, and strrep.
         prepend "{{ stage_transform_x64_prepend }}"; # prepend nops
         strrep "ReflectiveLoader" "{{ stage_transform_x64_strrep1 }}";
         strrep "beacon.x64.dll" ""; # Remove this text in the Beacon DLL
+        strrep "beacon.dll" ""; # Remove this text
+        strrep "NtQueueApcThread" "";
+		strrep "HTTP/1.1 200 OK" "";
+		strrep "Stack memory was corrupted" "";
+		strrep "ADVAPI32.dll" "";
+		strrep "WININET.dll" "";
+		strrep "WS2_32.dll" "";
+		strrep "DNSAPI.dll" "";
+		strrep "Secur32.dll" "";
+		strrep "VirtualProtectEx" "";
+		strrep "VirtualProtect" "";
+		strrep "VirtualAllocEx" "";
+		strrep "VirtualAlloc" "";
+		strrep "VirtualFree" "";
+		strrep "VirtualQuery" "";
+		strrep "RtlVirtualUnwind" "";
+		strrep "sAlloc" "";
+		strrep "FlsFree" "";
+		strrep "FlsGetValue" "";
+		strrep "FlsSetValue" "";
+		strrep "InitializeCriticalSectionEx" "";
+		strrep "CreateSemaphoreExW" "";
+		strrep "SetThreadStackGuarantee" "";
+		strrep "CreateThreadpoolTimer" "";
+		strrep "SetThreadpoolTimer" "";
+		strrep "WaitForThreadpoolTimerCallbacks" "";
+		strrep "CloseThreadpoolTimer" "";
+		strrep "CreateThreadpoolWait" "";
+		strrep "SetThreadpoolWait" "";
+		strrep "CloseThreadpoolWait" "";
+		strrep "FlushProcessWriteBuffers" "";
+		strrep "FreeLibraryWhenCallbackReturns" "";
+		strrep "GetCurrentProcessorNumber" "";
+		strrep "GetLogicalProcessorInformation" "";
+		strrep "CreateSymbolicLinkW" "";
+		strrep "SetDefaultDllDirectories" "";
+		strrep "EnumSystemLocalesEx" "";
+		strrep "CompareStringEx" "";
+		strrep "GetDateFormatEx" "";
+		strrep "GetLocaleInfoEx" "";
+		strrep "GetTimeFormatEx" "";
+		strrep "GetUserDefaultLocaleName" "";
+		strrep "IsValidLocaleName" "";
+		strrep "LCMapStringEx" "";
+		strrep "GetCurrentPackageId" "";
+		strrep "UNICODE" "";
+		strrep "UTF-8" "";
+		strrep "UTF-16LE" "";
+		strrep "MessageBoxW" "";
+		strrep "GetActiveWindow" "";
+		strrep "GetLastActivePopup" "";
+		strrep "GetUserObjectInformationW" "";
+		strrep "GetProcessWindowStation" "";
+		strrep "Sunday" "";
+		strrep "Monday" "";
+		strrep "Tuesday" "";
+		strrep "Wednesday" "";
+		strrep "Thursday" "";
+		strrep "Friday" "";
+		strrep "Saturday" "";
+		strrep "January" "";
+		strrep "February" "";
+		strrep "March" "";
+		strrep "April" "";
+		strrep "June" "";
+		strrep "July" "";
+		strrep "August" "";
+		strrep "September" "";
+		strrep "October" "";
+		strrep "November" "";
+		strrep "December" "";
+		strrep "MM/dd/yy" "";
+		strrep "Stack memory around _alloca was corrupted" "";
+		strrep "Unknown Runtime Check Error" "";
+		strrep "Unknown Filename" "";
+		strrep "Unknown Module Name" "";
+		strrep "Run-Time Check Failure #%d - %s" "";
+		strrep "Stack corrupted near unknown variable" "";
+		strrep "Stack pointer corruption" "";
+		strrep "Cast to smaller type causing loss of data" "";
+		strrep "Stack memory corruption" "";
+		strrep "Local variable used before initialization" "";
+		strrep "Stack around _alloca corrupted" "";
+		strrep "RegOpenKeyExW" "";
+		strrep "egQueryValueExW" "";
+		strrep "RegCloseKey" "";
+		strrep "LibTomMath" "";
+		strrep "Wow64DisableWow64FsRedirection" "";
+		strrep "Wow64RevertWow64FsRedirection" "";
+		strrep "Kerberos" "";
     }
 
     stringw "{{ sample_name }}"; # Add profile name to tag payloads to this profile
