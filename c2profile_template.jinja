@@ -32,10 +32,13 @@ set useragent "{{ useragent }}";
 ################################################
 ## SSL CERTIFICATE
 ################################################
-https-certificate { # keystore for actual cert
+https-certificate { # Simple self signed certificate data
     
-    set keystore  "keystore_name";
-    set password  "keystore_password";
+    set C   "{{ https_certificate_C }}";
+    set CN  "{{ https_certificate_CN }}";
+    set O   "{{ https_certificate_O }}";
+    set OU  "{{ https_certificate_OU }}";
+    set validity "{{ https_certificate_V }}";
 }
 
 ################################################
