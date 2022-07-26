@@ -121,22 +121,22 @@ def get_http_content():
     idgets/sortable.js, widgets/spinner.js, widgets/tabs.js, widgets/tooltip.js\
     * Copyright jQuery Foundation and other contributors; Licensed MIT */"
     ##End jquery ui v1.12.1##
-    # ,
-    # ##Start jquery v2.2.4##
-    # "/*! jQuery v2.2.4 | (c) jQuery Foundation | jquery.org/license */\
-    # !function(a,b){\'object\'==typeof module&&\'object\'==typeof module.exp\
-    # orts?module.exports=a.document?b(a,!0):function(a){if(!a.document)th\
-    # row new Error(\'jQuery requires a window with a document\');return b(a\
-    # )}:b(a)}(\'undefined\'!=typeof window?window:this,function(a,b){var c=\
-    # [],d=a.document,e=c.slice,f=c.concat,g=c.push,h=c.indexOf,i={},j=i.t\
-    # oString,k=i.hasOwnProperty,l={},m=\'2.2.4\',n=function(a,b){return new \
-    # n.fn.init(a,b)},o=/^[suFEFFxA0]+|[suFEFFxA0]+$/g,p=/^-ms-/,q=/-\
-    # ([da-z])/gi,r=function(a,b){return b.toUpperCase()};n.fn=n.prototype\
-    # ={jquery:m,constructor:n,selector:\'\',length:0,toArray:function(){retu\
-    # rn e.call(this)},get:function(a){return null!=a?0>a?this[a+this.lengt\
-    # h]:this[a]:e.call(this)},pushStack:function(a){var b=n.merge(this.con\
-    # structor(),a);return b.prevObject=this,b.context=this.context,b},each:"
-    # ##End jquery v2.2.4##
+    ,
+    ##Start jquery v2.2.4##
+    "/*! jQuery v2.2.4 | (c) jQuery Foundation | jquery.org/license */\
+    !function(a,b){\'object\'==typeof module&&\'object\'==typeof module.exp\
+    orts?module.exports=a.document?b(a,!0):function(a){if(!a.document)th\
+    row new Error(\'jQuery requires a window with a document\');return b(a\
+    )}:b(a)}(\'undefined\'!=typeof window?window:this,function(a,b){var c=\
+    [],d=a.document,e=c.slice,f=c.concat,g=c.push,h=c.indexOf,i={},j=i.t\
+    oString,k=i.hasOwnProperty,l={},m=\'2.2.4\',n=function(a,b){return new \
+    n.fn.init(a,b)},o=/^[suFEFFxA0]+|[suFEFFxA0]+$/g,p=/^-ms-/,q=/-\
+    ([da-z])/gi,r=function(a,b){return b.toUpperCase()};n.fn=n.prototype\
+    ={jquery:m,constructor:n,selector:\'\',length:0,toArray:function(){retu\
+    rn e.call(this)},get:function(a){return null!=a?0>a?this[a+this.lengt\
+    h]:this[a]:e.call(this)},pushStack:function(a){var b=n.merge(this.con\
+    structor(),a);return b.prevObject=this,b.context=this.context,b},each:"
+    ##End jquery v2.2.4##
     ] 
     return random.choice(contents)
 
