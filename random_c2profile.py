@@ -9,30 +9,42 @@ Joe Vest (@joevest) - 2021
 ===================================================================
 '''
 
+from ast import arg
 from jinja2 import Template
 from core.variables import *
+import argparse
  
-# Get Cobalt Strike version from variables.py
-version = variables['version']
+default_values = {}
+default_values['Profile'] = "CoolName"
 
-print(banner)
-print("[*] Generating Cobalt Strike " + version + " c2 profile...")
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='''Randomizing Profiles for Profit''')
+    parser.add_argument('-profilename','-p', help='Name of the Random Profile {Default = '+default_values['Profile']+'}')
 
-sample_name = get_random_string(8)
-c2profile_template_file_contents = open("c2profile_template.jinja",'r').read()
-c2profile_template = Template(c2profile_template_file_contents)
+    args = parser.parse_args()
 
-jinja2_variables = variables
+    # Get Cobalt Strike version from variables.py
+    version = variables['version']
 
-variables['sample_name'] = sample_name
-random_c2profile = c2profile_template.render(variables)
+    print(banner)
+    print("[*] Generating Cobalt Strike " + version + " c2 profile...")
 
-f = open("output/" + sample_name + '.profile', "a")
-f.write(random_c2profile)
-f.close()
+    if args.profilename:
+        sample_name = args.profilename
+    else:
+        sample_name = default_values['Profile']
 
-print("[*] Done. Don't forget to validate with c2lint. ")
-print("[*] Profile saved to output/" + sample_name + '.profile')
+    c2profile_template_file_contents = open("c2profile_template.jinja",'r').read()
+    c2profile_template = Template(c2profile_template_file_contents)
 
+    jinja2_variables = variables
 
+    variables['sample_name'] = sample_name
+    random_c2profile = c2profile_template.render(variables)
 
+    f = open("output/" + sample_name + '.profile', "a")
+    f.write(random_c2profile)
+    f.close()
+
+    print("[*] Done. Don't forget to validate with c2lint. ")
+    print("[*] Profile saved to output/" + sample_name + '.profile')
