@@ -17,34 +17,31 @@ import argparse
 default_values = {}
 default_values['Profile'] = "CoolName"
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='''Randomizing Profiles for Profit''')
-    parser.add_argument('-profilename','-p', help='Name of the Random Profile {Default = '+default_values['Profile']+'}')
+parser = argparse.ArgumentParser(description='''Randomizing Profiles for Profit''')
+parser.add_argument('-profilename','-p', help='Name of the Random Profile {Default = '+default_values['Profile']+'}')
+args = parser.parse_args()
 
-    args = parser.parse_args()
+# Get Cobalt Strike version from variables.py
+version = variables['version']
+print(banner)
+print("[*] Generating Cobalt Strike " + version + " c2 profile...")
 
-    # Get Cobalt Strike version from variables.py
-    version = variables['version']
+if args.profilename:
+    sample_name = args.profilename
+else:
+    sample_name = default_values['Profile']
 
-    print(banner)
-    print("[*] Generating Cobalt Strike " + version + " c2 profile...")
+c2profile_template_file_contents = open("c2profile_template.jinja",'r').read()
+c2profile_template = Template(c2profile_template_file_contents)
 
-    if args.profilename:
-        sample_name = args.profilename
-    else:
-        sample_name = default_values['Profile']
+jinja2_variables = variables
 
-    c2profile_template_file_contents = open("c2profile_template.jinja",'r').read()
-    c2profile_template = Template(c2profile_template_file_contents)
+variables['sample_name'] = sample_name
 
-    jinja2_variables = variables
+random_c2profile = c2profile_template.render(variables)
 
-    variables['sample_name'] = sample_name
-    random_c2profile = c2profile_template.render(variables)
-
-    f = open("output/" + sample_name + '.profile', "a")
-    f.write(random_c2profile)
-    f.close()
-
-    print("[*] Done. Don't forget to validate with c2lint. ")
-    print("[*] Profile saved to output/" + sample_name + '.profile')
+f = open("output/" + sample_name + '.profile', "a")
+f.write(random_c2profile)
+f.close()
+print("[*] Done. Don't forget to validate with c2lint. ")
+print("[*] Profile saved to output/" + sample_name + '.profile')
